@@ -163,7 +163,7 @@ const button = document.getElementById("button");
 // intercetto cambiamento tendina
 
 selectField.addEventListener("change", () => {
-	const currentValue = selectField.nodeValue;
+	const currentValue = selectField.Value;
 
 	if (currentValue !== "all") {
 		inputField.classList.remove("hidden"); // AGGIUNGERE CLASSE HIDDEN ALLA SEARCH SECTION
@@ -173,41 +173,52 @@ selectField.addEventListener("change", () => {
 });
 
 button.addEventListener("click", () => {
-	const inputValue = inputField.Value;
-	const selectValue = selectField.Value;
+	console.log(inputField.value);
+	console.log(selectField.value);
 
-	if (selectValue === "all") {
+	const inputValue = inputField.value;
+	const selectValue = selectField.value;
+
+	if (selectValue == "all") {
+		console.log(selectValue);
 		printDeck(deck, cardSection);
 		return;
-	}
+	} else {
+		const filteredDeck = [];
 
-	const filteredDeck = [];
+		for (let i = 0; i < deck.length; i++) {
+			const currentCard = deck[i];
 
-	for (let i = 0; i < deck.length; i++) {
-		const currentCard = deck[i];
-
-		switch (selectValue) {
-			case "id":
-			case "constitution":
-			case "strength":
-			case "combinedManaCost":
-				if (currentCard[selectedValue] == inputValue) {
-					filteredDeck.push(currentCard);
-				}
-				break;
-			case "flavorText-author":
-				if (currentCard.flavorText.author.includes(inputValue)) {
-					filteredDeck.push(currentCard);
-				}
-				break;
-			case "flavorText-quote":
-				if (currentCard.flavorText.quote.includes(inputValue)) {
-					filteredDeck.push(currentCard);
-				}
-				break;
+			switch (selectValue) {
+				case "id":
+				case "constitution":
+				case "strength":
+				case "combinedManaCost":
+					if (currentCard[selectValue] == inputValue) {
+						filteredDeck.push(currentCard);
+					}
+					break;
+				case "name":
+				case "cardType":
+				case "subType":
+					if (currentCard[selectValue].includes(inputValue)) {
+						filteredDeck.push(currentCard);
+					}
+					break;
+				case "flavorText-author":
+					if (currentCard.flavorText.author.includes(inputValue)) {
+						filteredDeck.push(currentCard);
+					}
+					break;
+				case "flavorText-quote":
+					if (currentCard.flavorText.quote.includes(inputValue)) {
+						filteredDeck.push(currentCard);
+					}
+					break;
+			}
 		}
+		console.log(filteredDeck);
+		console.log(deck);
+		printDeck(filteredDeck, cardSection);
 	}
-	console.log(filteredDeck);
-	console.log(deck);
-	printDeck(filteredDeck, cardSection);
 });
