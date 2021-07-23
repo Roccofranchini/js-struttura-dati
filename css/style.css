@@ -1,0 +1,11 @@
+img {
+	height: 200px;
+}
+
+.single-card {
+	border: 2px solid black;
+}
+
+.hidden {
+	display: none;
+}

@@ -14,8 +14,21 @@
 		<title>Document</title>
 	</head>
 
-	<body>
-		<section id="cards"></section>
+	<body class="py-2 px-2">
+		<select nam id="filter">
+			<option selected value="all">Tutte</option>
+			<option value="id">ID</option>
+			<option value="name">Nome</option>
+			<option value="combinedManaCost">Mana combinato</option>
+			<option value="cardType">Tipo carta</option>
+			<option value="subType">Sottotipo carta</option>
+			<option value="flavorText-author">Autore testo</option>
+			<option value="flavorText-quote">Citazione testo</option>
+		</select>
+		<input type="text" id="search" placeholder="scrivi.." class="hidden" />
+		<button id="button">Filtra</button>
+		<hr />
+		<section id="cards" class="row g-4"></section>
 		<script src="./js/script.js"></script>
 	</body>
 </html>
