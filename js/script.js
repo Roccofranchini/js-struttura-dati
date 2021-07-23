@@ -45,11 +45,7 @@ console.log(card);
 
 // STAMPA
 
-cardTemplate = setCardTemplate(card);
-
-cardSection.innerHTML = cardTemplate;
-
-function setCardTemplate(card) {
+const setCardTemplate = (card) => {
 	const subType = card.subType ? `- ${card.subType}` : "";
 	const Author = card.flavorText.author
 		? `${card.flavorText.author}`
@@ -91,4 +87,7 @@ function setCardTemplate(card) {
 	</ul>
 	`;
 	return cardTemplate;
-}
+};
+
+cardTemplate = setCardTemplate(card);
+cardSection.innerHTML = cardTemplate;
