@@ -3,7 +3,9 @@ img {
 }
 
 .single-card {
-	border: 2px solid black;
+	border: 3px solid black;
+	border-radius: 15px;
+	background-color: antiquewhite;
 }
 
 .hidden {

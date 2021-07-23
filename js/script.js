@@ -47,7 +47,7 @@ const deck = [
 		id: 2,
 		name: "Krosan Cloudscraper",
 		manaCost: ["7", "G", "G", "G"],
-		combinedManaCost: 4,
+		combinedManaCost: 10,
 		cardType: "Creature",
 		subType: "Beast Mutant",
 		expansion: {
@@ -86,6 +86,45 @@ const deck = [
 			source: "./img/background.jpg",
 		},
 	},
+	{
+		id: 3,
+		name: "Bloodfire Colossus",
+		manaCost: ["6", "R", "R"],
+		combinedManaCost: 8,
+		cardType: "Creature",
+		subType: "Giant",
+		expansion: {
+			reprintId: 10,
+			name: "Tenth Edition",
+			rarity: "Rare",
+			collectionNr: "191/350 ",
+		},
+
+		flavorText: {
+			quote:
+				"Occorse tutta la sua forza per contenere le fiamme che ardevano dentro di lui.",
+			author: "",
+		},
+		abilities: [
+			{
+				launchCost: [],
+				description:
+					"Sacrifica il Colosso Sangue-di-Fuoco e infliggi 6 danni ad ogni creatura e ad ogni giocatore.",
+			},
+		],
+		illustration: {
+			id: 2,
+			author: "Greg Staples",
+			image: "./img/bloodfire.jpg",
+		},
+		constitution: 6,
+		strength: 6,
+		borderColor: "#000",
+		background: {
+			color: "green",
+			source: "./img/background.jpg",
+		},
+	},
 ];
 
 console.log(deck);
@@ -94,9 +133,15 @@ console.log(deck);
 
 const setCardTemplate = (card) => {
 	const subType = card.subType ? `- ${card.subType}` : "";
+
 	const Author = card.flavorText.author
 		? `${card.flavorText.author}`
 		: `<em>none</em>`;
+
+	const textDescription = card.flavorText.quote
+		? `${card.flavorText.quote}`
+		: `<em>none</em>`;
+
 	let abilitiesContent = `<em>none</em>`;
 	if (card.abilities.length > 0) {
 		abilitiesContent = "<ul>";
@@ -112,7 +157,8 @@ const setCardTemplate = (card) => {
 	console.log(abilitiesContent);
 
 	const cardTemplate = `
-	<div class="col single-card">
+	<div class="col-6">
+	<div class="single-card">
 	<ul>
 	<img src="${card.illustration.image}" alt="" class='py-3'>
 	<li><strong>Id:</strong> ${card.id}</li>
@@ -124,16 +170,17 @@ const setCardTemplate = (card) => {
 	<li><strong>Exspansion name:</strong> ${card.expansion.name}</li>
 	<li><strong>Rarity:</strong> ${card.expansion.rarity}</li>
 	<li><strong>collectionNr:</strong> ${card.expansion.collectionNr}</li>
-	<li><strong>Text description:</strong> ${card.flavorText.quote}</li>
+	<li><strong>Text description:</strong> ${textDescription}</li>
 	<li><strong>Author:</strong> ${Author}</li>
 	<li><strong>Abilities:</strong> ${abilitiesContent}</li>
 	<li><strong>Id illustration:</strong> ${card.illustration.id}</li>
 	<li><strong>Author illustration:</strong> ${card.illustration.author}</li>
 	<li><strong>Constitution Points:</strong> ${card.constitution}</li>
-	<li><strong>Strength Points:</strong> ${card.strenght}</li>
+	<li><strong>Strength Points:</strong> ${card.strength}</li>
 	<li><strong>Card color:</strong> ${card.borderColor}</li>
 	<li><strong>Background color:</strong> ${card.background.color}</li>
 	</ul>
+	</div>
 	</div>
 	`;
 	return cardTemplate;
