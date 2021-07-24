@@ -1,8 +1,4 @@
-// My DECK = ARRAY DI OGGETTI CHE CONTIENE PIù CARTE
-
-// RIFERIMENTO DOM
-
-// CARD OBJECTS
+// creiamo il nostro array deck all'interno del quale inseriamo le carte
 
 const deck = [
 	{
@@ -129,7 +125,7 @@ const deck = [
 
 console.log(deck);
 
-// CREIAMO IL TEMPLATE DI OGNI CARTA
+// creiamo il template di ogni carta del deck
 
 const setCardTemplate = (card) => {
 	const subType = card.subType ? `- ${card.subType}` : "";
@@ -157,15 +153,19 @@ const setCardTemplate = (card) => {
 	console.log(abilitiesContent);
 
 	const cardTemplate = `
-	<div class="col-6">
+	<div class="col-4">
 	<div class="single-card">
-	<ul>
-	<img src="${card.illustration.image}" alt="" class='py-3'>
+	<ul class="px-3">
+	<li class="title">${card.name}</li>
+	<img src="${card.illustration.image}" alt="" class="my-2 img-fluid">
+	<li class="card-type d-flex justify-content-between"><span>${
+		card.cardType
+	} ${subType}</span> <span class="reprint-id text-center">${
+		card.expansion.reprintId
+	}</span></li>
 	<li><strong>Id:</strong> ${card.id}</li>
-	<li><strong>Name:</strong> ${card.name}</li>
 	<li><strong>Mana cost:</strong> ${card.manaCost.join(" ")}</li>
 	<li><strong>Total mana cost:</strong> ${card.combinedManaCost}</li>
-	<li><strong>Card type:</strong> ${card.cardType} ${subType}</li>
 	<li><strong>Reprint Id:</strong> ${card.expansion.reprintId}</li>
 	<li><strong>Exspansion name:</strong> ${card.expansion.name}</li>
 	<li><strong>Rarity:</strong> ${card.expansion.rarity}</li>
@@ -186,7 +186,7 @@ const setCardTemplate = (card) => {
 	return cardTemplate;
 };
 
-// RENDER DECK
+// stampiamo il mazzo composto dalle varie carte
 
 const printDeck = (deck, targetElement) => {
 	let deckTemplate = "";
@@ -202,6 +202,8 @@ const cardSection = document.getElementById("cards");
 printDeck(deck, cardSection);
 
 // FILTER LOGIC
+
+// prendiamo i riferimenti nell'html
 
 const inputField = document.getElementById("search");
 const selectField = document.getElementById("filter");
@@ -219,18 +221,27 @@ selectField.addEventListener("change", () => {
 	}
 });
 
+// gestisco il funzionamento del bottone
+
 button.addEventListener("click", () => {
 	console.log(inputField.value);
 	console.log(selectField.value);
 
+	//prendiamo i dati dell'utente
+
 	const inputValue = inputField.value;
 	const selectValue = selectField.value;
+
+	//se l'utente vuole vedere tutte le carte mostriamo l'intero deck
 
 	if (selectValue == "all") {
 		console.log(selectValue);
 		printDeck(deck, cardSection);
 		return;
-	} else {
+	}
+
+	// altrimenti creiamo un array vuoto all'interno del quale pushamo le carte "filtrate" tramito uno switch
+	else {
 		const filteredDeck = [];
 
 		for (let i = 0; i < deck.length; i++) {

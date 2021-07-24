@@ -1,5 +1,39 @@
+* {
+	list-style-type: none;
+}
+
+.title {
+	background-color: white;
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid black;
+}
+
+.card-type {
+	background-color: white;
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid black;
+}
+
+.reprint-id {
+	background-color: rgba(151, 54, 22, 0.8);
+	border: 1px solid black;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+}
+
+.text-section {
+	background-color: white;
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid black;
+	height: 205px;
+}
+
 img {
-	height: 200px;
+	border: 3px solid black;
 }
 
 .single-card {
